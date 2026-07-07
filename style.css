@@ -1,0 +1,290 @@
+/* ==========================================================================
+   1. VARIABLES & CONFIGURATION GÉNÉRALE
+   ========================================================================== */
+:root {
+    --primary-color: #2c3e50;    /* Bleu nuit moderne */
+    --secondary-color: #3498db;  /* Bleu vif pour les boutons */
+    --accent-color: #e67e22;     /* Orange pour l'administration */
+    --danger-color: #e74c3c;     /* Rouge pour la suppression */
+    --bg-color: #f5f7fa;         /* Fond de page très clair */
+    --card-bg: #ffffff;          /* Fond des conteneurs/cartes */
+    --text-color: #333333;       /* Couleur du texte principal */
+    --border-radius: 8px;        /* Arrondi des angles */
+    --transition: all 0.3s ease; /* Fluidité des animations au survol */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   2. MISE EN PAGE DU CONTENEUR PRINCIPAL (MAIN)
+   ========================================================================== */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* Ombre douce */
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Navigation de liens */
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   3. COMPOSANTS AVANCÉS : FORMULAIRES & BOUTONS
+   ========================================================================== */
+/* Formulaire de recherche sur l'accueil (Flexbox) */
+form#searchForm {
+    display: flex;
+    gap: 10px; /* Espace entre l'input et le bouton */
+    margin-top: 25px;
+}
+
+input[type="text"], input[type="number"], textarea {
+    flex: 1; /* L'input prend tout l'espace restant */
+    padding: 12px 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+/* Effet interactif quand on clique dans un champ */
+input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Boutons universels */
+button, .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--secondary-color);
+    color: white !important;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none !important;
+    text-align: center;
+    transition: var(--transition);
+}
+
+button:hover, .btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px); /* Léger effet de soulèvement */
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* Variations de boutons de couleur */
+.btn-admin { background-color: var(--accent-color); }
+.btn-admin:hover { background-color: #d35400; box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
+
+/* ==========================================================================
+   4. AFFICHAGE DES CARTES DE LIVRES (CSS GRID)
+   ========================================================================== */
+/* Grille adaptative automatique pour les résultats de recherche */
+.results-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.book-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    border-color: var(--secondary-color);
+}
+
+.book-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.book-card p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   5. TABLEAUX COMPLETS ET LISTES (Pour l'administration et Wishlist)
+   ========================================================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background: var(--card-bg);
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    border: 1px solid #e2e8f0;
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f8fafc; /* Lignes zébrées pour une meilleure lecture */
+}
+
+/* Liens de suppression (Retirer / Supprimer) */
+.delete-link {
+    color: var(--danger-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+.delete-link:hover {
+    text-decoration: underline;
+}
+
+/* Configuration des listes à puces (Wishlist) */
+ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+ul li {
+    background: #f8fafc;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+
+/* Pour les tablettes et smartphones (Écrans inférieurs à 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    main {
+        padding: 20px;
+        margin: 10px auto;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    /* Le formulaire de recherche passe d'une ligne à un affichage vertical bloc */
+    form#searchForm {
+        flex-direction: column;
+    }
+
+    input[type="text"], button {
+        width: 100%;
+    }
+
+    /* Transformation du tableau en blocs verticaux lisibles sur mobile */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #e2e8f0;
+        margin-bottom: 15px;
+        border-radius: var(--border-radius);
+        background: #fff;
+        padding: 10px;
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    /* Ajout d'étiquettes devant les données du tableau sur mobile */
+    td:before {
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+    
+    /* On cible les cellules du tableau d'admin pour leur donner un titre sur mobile */
+    td:nth-of-type(1):before { content: "Titre :"; }
+    td:nth-of-type(2):before { content: "Auteur :"; }
+    td:nth-of-type(3):before { content: "Exemplaires :"; }
+    td:nth-of-type(4):before { content: "Action :"; }
+
+    ul li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Bibliothèque</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Bienvenue à la Bibliothèque en Ligne</h1>
+        <p>Recherchez un livre par son titre ou son auteur dans notre collection.</p>
+        
+        <form id="searchForm" action="results.php" method="GET">
+            <input type="text" id="queryInput" name="query" placeholder="Ex: Le Petit Prince..." required>
+            <button type="submit">Rechercher</button>
+        </form>
+        
+        <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="wishlist.php" class="btn">Voir ma liste de lecture</a>
+            <a href="admin.php" class="btn btn-admin">Espace Administration (CRUD Livres)</a>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            const query = document.getElementById('queryInput').value.trim();
+            
+            // Contrôle dynamique avant l'envoi au backend PHP
+            if (query.length < 2) {
+                e.preventDefault(); // Bloque l'envoi du formulaire
+                alert('Veuillez entrer au moins 2 caractères pour la recherche.');
+            }
+        });
+    </script>
+</body>
+</html>
