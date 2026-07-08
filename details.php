@@ -13,7 +13,7 @@ $livre = $stmt->fetch();
 
 // Si aucun livre ne correspond à cet ID, on arrête le script
 if (!$livre) { 
-    die("Livre introuvable."); 
+    die("livre introuvable."); 
 }
 
 // Gestion de l'ajout à la liste de lecture (Action du formulaire)
@@ -27,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajouter_liste'])) {
     
     if ($check->rowCount() == 0) {
         // Insertion si le livre n'y est pas encore
-        $insert = $pdo->prepare("INSERT INTO Liste_lecture (id_livre, id_lecteur, date_emprunt) VALUES (?, ?, ?)");
+        $insert = $pdo->prepare("INSERT INTO liste_lecture (id_livre, id_lecteur, date_emprunt) VALUES (?, ?, ?)");
         $insert->execute([$id, $id_lecteur, $date_emprunt]);
-        echo "<script>alert('Livre ajouté à votre liste !');</script>";
+        echo "<script>alert('livre ajouté à votre liste !');</script>";
     } else {
         echo "<script>alert('Ce livre est déjà dans votre liste.');</script>";
     }
