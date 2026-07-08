@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajouter_liste'])) {
     $date_emprunt = date('Y-m-d');
     
     // Vérification si le livre est déjà présent dans la liste
-    $check = $pdo->prepare("SELECT * FROM Liste_lecture WHERE id_livre = ? AND id_lecteur = ?");
+    $check = $pdo->prepare("SELECT * FROM liste_lecture WHERE id_livre = ? AND id_lecteur = ?");
     $check->execute([$id, $id_lecteur]);
     
     if ($check->rowCount() == 0) {

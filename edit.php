@@ -4,12 +4,12 @@ require 'db.php';
 // Vérification de l'ID du livre à modifier
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-$stmt = $pdo->prepare("SELECT * FROM Livres WHERE id = ?");
+$stmt = $pdo->prepare("SELECT * FROM livres WHERE id = ?");
 $stmt->execute([$id]);
 $livre = $stmt->fetch();
 
 if (!$livre) {
-    die("Livre introuvable.");
+    die("livre introuvable.");
 }
 
 // Traitement de la mise à jour (Action UPDATE du CRUD)
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier_livre'])) {
     $nombre_exemplaire = (int)$_POST['nombre_exemplaire'];
 
     if (!empty($titre) && !empty($auteur)) {
-        $update = $pdo->prepare("UPDATE Livres SET titre = ?, auteur = ?, description = ?, maison_edition = ?, nombre_exemplaire = ? WHERE id = ?");
+        $update = $pdo->prepare("UPDATE livres SET titre = ?, auteur = ?, description = ?, maison_edition = ?, nombre_exemplaire = ? WHERE id = ?");
         $update->execute([$titre, $auteur, $description, $maison_edition, $nombre_exemplaire, $id]);
         
         // Redirection vers l'administration avec un message de succès

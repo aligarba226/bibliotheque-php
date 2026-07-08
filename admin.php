@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajouter_livre'])) {
     $nombre_exemplaire = (int)$_POST['nombre_exemplaire'];
 
     if (!empty($titre) && !empty($auteur)) {
-        $insert = $pdo->prepare("INSERT INTO Livres (titre, auteur, description, maison_edition, nombre_exemplaire) VALUES (?, ?, ?, ?, ?)");
+        $insert = $pdo->prepare("INSERT INTO livres (titre, auteur, description, maison_edition, nombre_exemplaire) VALUES (?, ?, ?, ?, ?)");
         $insert->execute([$titre, $auteur, $description, $maison_edition, $nombre_exemplaire]);
         echo "<script>alert('Nouveau livre ajouté avec succès dans la collection !');</script>";
     }
@@ -19,14 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajouter_livre'])) {
 // 2. GESTION DE LA SUPPRESSION D'UN LIVRE (Action "Delete" du CRUD)
 if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id_livre'])) {
     $id_livre = (int)$_GET['id_livre'];
-    $delete = $pdo->prepare("DELETE FROM Livres WHERE id = ?");
+    $delete = $pdo->prepare("DELETE FROM livres WHERE id = ?");
     $delete->execute([$id_livre]);
     header("Location: admin.php");
     exit;
 }
 
 // 3. RÉCUPÉRATION DE TOUS LES LIVRES POUR LE TABLEAU (Action "Read" du CRUD)
-$stmt = $pdo->query("SELECT * FROM Livres ORDER BY id DESC");
+$stmt = $pdo->query("SELECT * FROM livres ORDER BY id DESC");
 // fetchAll() est laissé vide pour éviter les erreurs de constantes PDO
 $tous_les_livres = $stmt->fetchAll();
 ?>
