@@ -5,7 +5,7 @@ $search = isset($_GET['query']) ? trim($_GET['query']) : '';
 $livres = [];
 
 if (!empty($search)) {
-    $stmt = $pdo->prepare("SELECT id, titre, auteur FROM Livres WHERE titre LIKE :search OR auteur LIKE :search");
+    $stmt = $pdo->prepare("SELECT id, titre, auteur FROM livres WHERE titre LIKE :search OR auteur LIKE :search");
     $stmt->execute(['search' => '%' . $search . '%']);
     
     // Correction de sécurité : parenthèses laissées vides pour éviter tout conflit de constante PDO
