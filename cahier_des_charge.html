@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentation du projet Word</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f5f7fa; }
+        .card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: inline-block; }
+        button { background-color: #2b579a; color: white; border: none; padding: 15px 30px; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.2s; }
+        button:hover { background-color: #1e3e6b; transform: scale(1.05); }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Télécharger la Documentation Officielle</h2>
+    <p>Cliquez sur le bouton ci-dessous pour exporter la documentation technique et utilisateur complète au format Microsoft Word (.docx).</p>
+    <button onclick="exportDocToWord()">📥 Télécharger pour Microsoft Word</button>
+</div>
+
+<script>
+function exportDocToWord() {
+    var htmlContent = `
+    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+    <head>
+        <title>Documentation Technique et Utilisateur</title>
+        <style>
+            body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #2d3748; }
+            .cover { text-align: center; padding-top: 100pt; padding-bottom: 100pt; }
+            .cover h1 { font-size: 26pt; color: #1a365d; margin-bottom: 15pt; text-transform: uppercase; }
+            .cover .subtitle { font-size: 16pt; color: #4a5568; margin-bottom: 80pt; }
+            .cover .meta { font-size: 11pt; color: #718096; line-height: 1.8; }
+            h1 { color: #1a365d; font-size: 20pt; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-top: 30pt; }
+            h2 { color: #2b6cb0; font-size: 14pt; margin-top: 20pt; border-left: 4px solid #2b6cb0; padding-left: 8px; }
+            h3 { color: #2d3748; font-size: 11pt; margin-top: 15pt; }
+            p, li { font-size: 10.5pt; text-align: justify; color: #2d3748; }
+            ul { padding-left: 20pt; }
+            li { margin-bottom: 4pt; }
+            table { width: 100%; border-collapse: collapse; margin-top: 15pt; margin-bottom: 15pt; }
+            th, td { border: 1px solid #e2e8f0; padding: 8pt; text-align: left; font-size: 10pt; }
+            th { background-color: #2d3748; color: white; font-weight: bold; }
+            tr:nth-child(even) { background-color: #f7fafc; }
+            pre { font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; background-color: #f7fafc; border: 1px solid #e2e8f0; padding: 10pt; color: #2d3748; }
+            .alert-box { background-color: #fffaf0; border-left: 4px solid #dd6b20; padding: 10pt; margin-top: 15pt; margin-bottom: 15pt; }
+            .alert-box p { color: #dd6b20; font-size: 10pt; margin: 0; }
+        </style>
+    </head>
+    <body>
+        <div class="cover">
+            <h1>DOCUMENTATION TECHNIQUE & UTILISATEUR</h1>
+            <div class="subtitle">Application de Gestion de Bibliothèque en Ligne</div>
+            <div class="meta">
+                <b>Environnement de développement :</b> Laragon / PHP 8 / MySQL<br>
+                <b>Technologies :</b> HTML5, CSS3 (Grid & Flexbox), Vanilla JavaScript, PHP PDO<br>
+                <b>Statut :</b> Projet Finalisé et Déployé
+            </div>
+        </div>
+
+        <br clear="all" style="page-break-before:always" />
+
+        <h1>1. Introduction et Architecture</h1>
+        <p>Ce document constitue la documentation officielle du projet d'application de gestion de bibliothèque. L'objectif de cette application est de fournir aux utilisateurs un moyen fluide de rechercher et sauvegarder des livres, et à l'administration un outil complet (CRUD) pour piloter le stock physique d'ouvrages.</p>
+        
+        <h2>1.1 Architecture des Fichiers</h2>
+        <p>Le projet est structuré de manière modulaire, respectant une séparation claire entre la configuration, la logique d'accès aux données, l'administration et l'affichage utilisateur.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom du Fichier</th>
+                    <th>Type</th>
+                    <th>Description et Rôle Fonctionnel</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>db.php</b></td>
+                    <td>PHP Backend</td>
+                    <td>Initialisation de la connexion PDO. Détection dynamique de l'hôte (Laragon local vs Serveur Cloud).</td>
+                </tr>
+                <tr>
+                    <td><b>index.html</b></td>
+                    <td>HTML / JS</td>
+                    <td>Page d'accueil de l'application. Contient la barre de recherche avec contrôle JavaScript dynamique.</td>
+                </tr>
+                <tr>
+                    <td><b>results.php</b></td>
+                    <td>PHP / HTML</td>
+                    <td>Traitement de la requête de recherche et affichage des cartes de livres en grille CSS Grid.</td>
+                </tr>
+                <tr>
+                    <td><b>details.php</b></td>
+                    <td>PHP / HTML</td>
+                    <td>Fiche d'un ouvrage (affichage complet via ID) et bouton d'action pour l'ajouter à sa liste.</td>
+                </tr>
+                <tr>
+                    <td><b>wishlist.php</b></td>
+                    <td>PHP / HTML</td>
+                    <td>Espace utilisateur listant les lectures enregistrées avec option de suppression.</td>
+                </tr>
+                <tr>
+                    <td><b>admin.php</b></td>
+                    <td>PHP / HTML</td>
+                    <td>Tableau de bord d'administration : formulaire d'ajout et liste générale avec actions CRUD.</td>
+                </tr>
+                <tr>
+                    <td><b>edit.php</b></td>
+                    <td>PHP / HTML</td>
+                    <td>Interface de modification d'un livre pré-remplie avec mise à jour MySQL sécurisée.</td>
+                </tr>
+                <tr>
+                    <td><b>style.css</b></td>
+                    <td>CSS3</td>
+                    <td>Feuille de style centralisée, entièrement responsive (Flexbox, Grid et Media Queries).</td>
+                </tr>
+                <tr>
+                    <td><b>bibliotheque.sql</b></td>
+                    <td>SQL</td>
+                    <td>Script de structure et de données initiales de la base de données.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h1>2. Configuration et Installation</h1>
+        <h2>2.1 Installation Locale avec Laragon</h2>
+        <ul>
+            <li>Télécharger et installer <b>Laragon Full</b> sur votre machine Windows.</li>
+            <li>Placer le dossier complet du projet dans le répertoire racine : <code>C:\\laragon\\www\\bibliotheque\\</code>.</li>
+            <li>Démarrer les services de Laragon (Apache et MySQL) en cliquant sur <b>"Tout démarrer"</b>.</li>
+            <li>Ouvrir votre outil de gestion de base de données (PhpMyAdmin ou l'onglet Database de Laragon).</li>
+            <li>Créer une nouvelle base de données nommée exactement <code>bibliotheque</code>.</li>
+            <li>Cliquer sur l'onglet <b>Importer</b>, sélectionner le fichier <code>bibliotheque.sql</code> fourni à la racine, puis valider.</li>
+            <li>Accéder à l'application depuis votre navigateur à l'adresse : <code>http://localhost/bibliotheque/</code>.</li>
+        </ul>
+
+        <div class="alert-box">
+            <p><b>REMARQUE CACHE :</b> Si vous modifiez le fichier <code>style.css</code> et que les changements ne s'affichent pas immédiatement à l'écran, forcez votre navigateur à vider son cache local en utilisant la combinaison de touches <code>Ctrl + F5</code> (ou <code>Cmd + Shift + R</code> sur Mac).</p>
+        </div>
+
+        <h1>3. Guide de Référence du Code Backend (PHP & PDO)</h1>
+        <h2>3.1 Connexion Hybride Intelligente (db.php)</h2>
+        <p>Le fichier de connexion implémente une détection d'environnement automatique. Cela élimine le besoin de modifier manuellement le code lors de la bascule entre le développement sur Laragon et le déploiement sur le cloud (Render/InfinityFree).</p>
+        <pre>
+&lt;?php
+if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == '127.0.0.1') {
+    $host = 'localhost';
+    $db   = 'bibliotheque';
+    $user = 'root';
+    $pass = '';
+} else {
+    $host = getenv('DB_HOST');
+    $db   = getenv('DB_NAME');
+    $user = getenv('DB_USER');
+    $pass = getenv('DB_PASS');
+}
+
+$charset = 'utf8mb4';
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+try {
+     $pdo = new PDO($dsn, $user, $pass);
+} catch (\\PDOException $e) {
+     die("Erreur de connexion : " . $e->getMessage());
+}
+?&gt;</pre>
+
+        <h2>3.2 Résolution des Erreurs de Constantes PDO</h2>
+        <p>Pour garantir la compatibilité totale sur les configurations PHP strictes de certains serveurs distants sans nécessiter la déclaration lourde de constantes, l'ensemble des méthodes de récupération de données du projet (<code>fetch()</code> et <code>fetchAll()</code>) a été allégé et laissé sans paramètre fixe dans les scripts d'administration et de traitement.</p>
+
+        <h1>4. Guide Utilisateur et Administrateur</h1>
+        <h2>4.1 Utilisation Publique (Lecteur)</h2>
+        <p><b>1. Recherche de livres :</b> Depuis la page d'accueil, saisissez un mot-clé (titre ou auteur). Si vous entrez moins de 2 caractères, le script JavaScript intercepte l'événement et affiche une alerte contextuelle bloquant l'envoi pour préserver les performances du serveur.</p>
+        <p><b>2. Consultation et Sauvegarde :</b> Cliquez sur "Voir les détails" sur une carte pour lire le résumé complet. Le bouton bleu vous permet d'ajouter le livre à votre liste de lecture personnelle. L'application vérifie en amont dans la table <code>Liste_lecture</code> si l'ouvrage y figure déjà afin d'éviter les doublons.</p>
+
+        <h2>4.2 Utilisation du Panneau d'Administration (CRUD)</h2>
+        <p>Accessible via le bouton orange de l'accueil, l'espace d'administration permet de manager l'ensemble de la bibliothèque :</p>
+        <ul>
+            <li><b>Ajouter un livre (Create) :</b> Remplissez le formulaire supérieur. Les champs Titre et Auteur sont obligatoires au niveau du HTML5 et validés côté PHP par la fonction <code>trim()</code> et <code>!empty()</code>.</li>
+            <li><b>Modifier un livre (Update) :</b> Cliquez sur le bouton "Modifier" en regard d'une ligne du tableau. Vous serez redirigé vers <code>edit.php</code> où le formulaire apparaîtra pré-rempli avec les données courantes de l'ID sélectionné.</li>
+            <li><b>Suppression (Delete) :</b> Le lien de suppression déclenche un gestionnaire d'événement JavaScript <code>onclick="return confirm(...)"</code>. L'action n'est transmise au serveur PHP que si l'utilisateur valide explicitement la boîte de dialogue.</li>
+        </ul>
+    </body>
+    </html>`;
+
+    var blob = new Blob(['\ufeff' + htmlContent], {
+        type: 'application/msword'
+    });
+    
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'Documentation_Technique_Bibliotheque.doc';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+</script>
+
+</body>
+</html>
