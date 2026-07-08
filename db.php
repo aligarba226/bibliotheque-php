@@ -1,5 +1,5 @@
 <?php
-$host = 'bibliotheque-project-bibliotheque-project.b.aivencloud.com/'; // Ton host Aiven
+$host = 'bibliotheque-project-bibliotheque-project.b.aivencloud.com'; // Ton host Aiven
 $port = '22347';                      // Ton port Aiven
 $db   = 'defaultdb';                  
 $user = 'avnadmin';                   
