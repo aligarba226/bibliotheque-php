@@ -1,4 +1,5 @@
 <?php
+require_once 'check_admin.php'; // 🔒 LE VERROU DE SÉCURITÉ EST ICI
 require 'db.php';
 
 // 1. GESTION DE L'AJOUT D'UN LIVRE (Action "Create" du CRUD)
@@ -27,7 +28,6 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id_li
 
 // 3. RÉCUPÉRATION DE TOUS LES LIVRES POUR LE TABLEAU (Action "Read" du CRUD)
 $stmt = $pdo->query("SELECT * FROM livres ORDER BY id DESC");
-// fetchAll() est laissé vide pour éviter les erreurs de constantes PDO
 $tous_les_livres = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>

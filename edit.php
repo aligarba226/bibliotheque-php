@@ -1,4 +1,5 @@
 <?php
+require_once 'check_admin.php'; // 🔒 Sécurisation de la page de modification
 require 'db.php';
 
 // Vérification de l'ID du livre à modifier
