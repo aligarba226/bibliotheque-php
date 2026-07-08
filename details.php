@@ -5,7 +5,7 @@ require 'db.php';
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Préparation et exécution de la requête pour récupérer le livre sélectionné
-$stmt = $pdo->prepare("SELECT * FROM Livres WHERE id = ?");
+$stmt = $pdo->prepare("SELECT * FROM livres WHERE id = ?");
 $stmt->execute([$id]);
 
 // fetch() est laissé vide pour éviter l'erreur de constante
