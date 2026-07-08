@@ -41,7 +41,8 @@ $tous_les_livres = $stmt->fetchAll();
 <body>
     <main>
         <h2>Espace Administration de la Bibliothèque</h2>
-        <a href="index.html" class="btn">Retour à l'accueil public</a>
+           <a href="index.html" class="btn">Retour à l'accueil public</a>
+           <a href="logout.php" class="btn" style="background-color: #e53e3e;">Se déconnecter</a>
         <br><br>
 
         <h3>Ajouter un nouveau livre à la collection</h3>
