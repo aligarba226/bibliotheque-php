@@ -12,7 +12,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id_li
 }
 
 // Récupération de la liste avec une jointure SQL
-$query = "SELECT L.id, L.titre, L.auteur, Li.date_emprunt FROM liste_lecture Li JOIN Livres L ON Li.id_livre = L.id WHERE Li.id_lecteur = ?";
+$query = "SELECT L.id, L.titre, L.auteur, Li.date_emprunt FROM liste_lecture Li JOIN livres L ON Li.id_livre = L.id WHERE Li.id_lecteur = ?";
 $stmt = $pdo->prepare($query);
 $stmt->execute([$id_lecteur]);
 
